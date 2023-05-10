@@ -1,6 +1,10 @@
 public class Controller {
+    static Model miModelo;
     public static void main(String[] args) {
         View.View();
+
+        ObserverVelocidad observarVelocidad= new ObserverVelocidad();
+        miModelo.addObserver(observarVelocidad);
             }
 
     public static void bCrearCoche(String modelo, String matricula) {
@@ -8,13 +12,13 @@ public class Controller {
         if (aux != null) View.muestraVelocidad(aux.matricula, aux.velocidad);
     }
 
-    public static Integer bAumentarVelocidad(String matricula, Integer v){
-        Integer aux= Model.subirVelocidad(matricula, v);
+    public Integer bAumentarVelocidad(String matricula, Integer v){
+        Integer aux=miModelo.subirVelocidad(matricula, v);
         if (aux != null) View.muestraVelocidad(matricula, aux);
         return aux;
     }
 
-    public static Integer bReducirVelocidad(String matricula, Integer v){
+    public Integer bReducirVelocidad(String matricula, Integer v){
         Integer aux= Model.bajarVelocidad(matricula,v);
         if (aux != null) View.muestraVelocidad(matricula, aux);
         return aux;
