@@ -1,27 +1,24 @@
 public class Controller {
-    static Model miModelo;
+    static Model miModelo = new Model();
+
     public static void main(String[] args) {
         View.View();
 
-        ObserverVelocidad observarVelocidad= new ObserverVelocidad();
+        ObserverVelocidad observarVelocidad = new ObserverVelocidad();
         miModelo.addObserver(observarVelocidad);
-            }
+    }
 
     public static void bCrearCoche(String modelo, String matricula) {
         Coche aux = Model.crearCoche(modelo, matricula);
         if (aux != null) View.muestraVelocidad(aux.matricula, aux.velocidad);
     }
 
-    public Integer bAumentarVelocidad(String matricula, Integer v){
-        Integer aux=miModelo.subirVelocidad(matricula, v);
-        if (aux != null) View.muestraVelocidad(matricula, aux);
-        return aux;
+    public static void bAumentarVelocidad(String matricula, Integer v) {
+        miModelo.subirVelocidad(matricula, v);
     }
 
-    public Integer bReducirVelocidad(String matricula, Integer v){
-        Integer aux= Model.bajarVelocidad(matricula,v);
-        if (aux != null) View.muestraVelocidad(matricula, aux);
-        return aux;
+    public static void bReducirVelocidad(String matricula, Integer v) {
+        miModelo.bajarVelocidad(matricula, v);
     }
 
         /*
