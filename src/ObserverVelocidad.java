@@ -5,6 +5,8 @@ import java.util.Observer;
 public class ObserverVelocidad implements Observer {
     /**
      * Se llama cada vez que exista un cambio
+     * El observable cuando hace el notifyObservers
+     * 'dispara' todos los update de los Observers
      * @param o     objeto observable(Model).
      * @param arg   argumento pasado por {@code notifyObservers}
      *                 method.
