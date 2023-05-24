@@ -15,7 +15,9 @@ classDiagram
       class Controller{
           +main()
       }
-      class View {+muestraVelocidad(String, Integer)}
+      class View {+muestraVelocidad(String, Integer)
+                  +muestraCoche(String, String, Integer)
+      }
       class Model {
           ArrayList~Coche~: parking
           +crearCoche(String, String, String)
@@ -24,6 +26,7 @@ classDiagram
           +subirVelocidad(String, Integer)
           +bajarVelocidad(String, Integer)
           +getVelocidad(String)
+          +getModelo(String)
       }
       class InterfazGrafica {
           +mostrarVentana()
@@ -95,6 +98,19 @@ sequenceDiagram
     deactivate Controller
     View-->>usuario: Tu coche ha reducido su velocidad!
     deactivate View
+    
+    usuario-->>View: Introduce matrícula! clik en BUSCAR!
+    activate View
+    View-->>Controller: El usuario quiere buscar un coche
+    activate Controller
+    Controller->>Model: Busca coche
+    activate Model
+    Model-->>Controller: Coche encontrado
+    deactivate Model
+    Controller-->>View: Coche encontrado
+    deactivate Controller
+    View-->>usuario: Los datos de tu coche!
+    deactivate View
 ```
 
 El mismo diagrama con los nombres de los métodos y ahora la parte de la Arquitectura de la vista son tres clases
@@ -142,4 +158,15 @@ sequenceDiagram
     Controller-->>+View: muestraVelocidad(matricula, velocidad)
     deactivate Controller
     View-->>-Dialogo: muestraVelocidad(matricula, velocidad)
+    
+    usuario-->>InterfazGrafica: Introduce matrícula! clik en BUSCAR!
+    InterfazGrafica-->Controller: buscarCoche(matricula)
+    activate Controller
+    Controller->>Model: getCoche(matricula)
+    activate Model
+    Model-->>Controller: Coche encontrado
+    deactivate Model
+    Controller-->>+View: muestraCoche(matricula, modelo, velocidad)
+    deactivate Controller
+    View-->>-Dialogo: muestraCoche(matricula, modelo, velocidad)
 ```

@@ -20,7 +20,7 @@ public class Model {
      * Busca coche segun matricula
      *
      * @param matricula a buscar
-     * @return chche o null si no existe
+     * @return coche o null si no existe
      */
     public static Coche getCoche(String matricula) {
         Coche aux = null;
@@ -73,10 +73,20 @@ public class Model {
     /**
      * Devuelve la velocidad segun la matricula
      *
-     * @param matricula
-     * @return
+     * @param matricula del coche
+     * @return velocidad del coche
      */
     public static Integer getVelocidad(String matricula) {
         return getCoche(matricula).velocidad;
+    }
+
+    /**
+     * Devuelve el modelo de un coche según la matrícula
+     *
+     * @param matricula del coche
+     * @return modelo del coche
+     */
+    public static String getModelo(String matricula) {
+        return getCoche(matricula).modelo;
     }
 }
