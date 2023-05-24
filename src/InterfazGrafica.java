@@ -10,6 +10,7 @@ public class InterfazGrafica {
     private JTextField matricula;
     private JButton aumentarVelocidad;
     private JButton bajarVelocidad;
+    private JButton bBuscar;
 
     /**
      * Constructor del entorno gráfico para el usuario
@@ -31,6 +32,11 @@ public class InterfazGrafica {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.bReducirVelocidad(matricula.getText(), 10);
+            }
+        });
+        bBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { Controller.bBuscar(matricula.getText());
             }
         });
     }
