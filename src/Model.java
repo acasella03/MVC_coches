@@ -20,7 +20,7 @@ public class Model {
      * Busca coche segun matricula
      *
      * @param matricula a buscar
-     * @return chche o null si no existe
+     * @return coche o null si no existe
      */
     public static Coche getCoche(String matricula) {
         Coche aux = null;
