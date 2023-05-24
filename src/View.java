@@ -20,6 +20,14 @@ public class View {
         return true;
     }
 
+    /**
+     * Muestra un coche encontrado
+     *
+     * @param matricula del coche encontrado
+     * @param modelo    del coche encontrado
+     * @param v         velocidad del coche encontrado
+     * @return el coche encontrado
+     */
     public static boolean muestraCoche(String matricula, String modelo, Integer v) {
         String mensaje = "Coche " + matricula + " Modelo " + modelo + " velocidad: " + v + "km/h";
         System.out.println(mensaje);
