@@ -34,7 +34,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Escribe matrícula"/>
+          <text value="Escribe matrícula a crear/buscar"/>
         </properties>
       </component>
       <component id="542b8" class="javax.swing.JButton" binding="aumentarVelocidad">

@@ -21,7 +21,7 @@ public class Controller {
     }
     public static Coche bBuscarCoche (String matricula){
         Coche aux= Model.getCoche(matricula);
-        if (aux != null) View.muestraVelocidad(aux.matricula,aux.velocidad);
+        if (aux != null) View.muestraCoche(aux.matricula, aux.modelo, aux.velocidad);
         return aux;
     }
 
