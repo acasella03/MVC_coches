@@ -48,7 +48,11 @@ classDiagram
       class ObserverVelocidad {
       +update()
       }
+      class ObsExceso {
+      +update()
+      }
     Controller "1" *-- "1" ObserverVelocidad : association
+    Controller "1" *-- "1" ObsExceso : association
     Controller "1" *-- "1" Model : association
     Controller "1" *-- "1" View : association
     Model "1" *-- "1..n" Coche : association
@@ -92,12 +96,13 @@ sequenceDiagram
     Controller->>Model: Aumenta la velocidad
     activate Model
     Model-->>ObserverVelocidad: Notificación de cambio de velocidad
-    deactivate Model
     activate ObserverVelocidad
+    Model-->>ObsExceso: Notificación de cambio de velocidad
+    deactivate Model
     activate ObsExceso
     ObserverVelocidad-->>+View: Muestra la velocidad
-    ObsExceso-->>+View: Muestra Velocidad con exceso
     deactivate ObserverVelocidad
+    ObsExceso-->>+View: Muestra Velocidad con exceso
     deactivate ObsExceso
     deactivate Controller
     View-->>usuario: Tu coche ha aumentado su velocidad!
