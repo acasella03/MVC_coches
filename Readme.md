@@ -27,7 +27,9 @@ classDiagram
       class Controller{
           +main()
       }
-      class View {+muestraVelocidad(String, Integer)}
+      class View {+muestraVelocidad(String, Integer)
+                  +muestraVelocidad2(String, Integer)
+       }
       class Model {
           ArrayList~Coche~: parking
           +crearCoche(String, String, String)
@@ -67,6 +69,7 @@ sequenceDiagram
     participant View
     participant Controller
     participant ObserverVelocidad
+    participant ObsExceso
     participant Model
     
     usuario-->>View: clik! Crear coche
@@ -91,8 +94,11 @@ sequenceDiagram
     Model-->>ObserverVelocidad: Notificación de cambio de velocidad
     deactivate Model
     activate ObserverVelocidad
+    activate ObsExceso
     ObserverVelocidad-->>+View: Muestra la velocidad
+    ObsExceso-->>+View: Muestra Velocidad con exceso
     deactivate ObserverVelocidad
+    deactivate ObsExceso
     deactivate Controller
     View-->>usuario: Tu coche ha aumentado su velocidad!
     deactivate View
@@ -124,6 +130,7 @@ sequenceDiagram
     
     participant Controller
     participant ObserverVelocidad
+    participant ObsExceso
     participant Model
     
     usuario-->>InterfazGrafica: clik! Crear coche
@@ -136,7 +143,6 @@ sequenceDiagram
     Controller-->>+View: muestraVelocidad(matricula, velocidad)
     deactivate Controller
     View-->>-Dialogo: muestraVelocidad(matricula, velocidad)
-    
     usuario-->>InterfazGrafica: clik! Para aumentar velocidad
     InterfazGrafica-->>Controller: subirVelocidad(matricula,velocidad)
     activate Controller
