@@ -6,6 +6,9 @@ public class Controller {
 
         ObserverVelocidad observarVelocidad = new ObserverVelocidad();
         miModelo.addObserver(observarVelocidad);
+
+        ObsExceso observarExceso = new ObsExceso();
+        miModelo.addObserver(observarExceso);
     }
 
     public static void bCrearCoche(String modelo, String matricula) {
