@@ -27,7 +27,9 @@ classDiagram
       class Controller{
           +main()
       }
-      class View {+muestraVelocidad(String, Integer)}
+      class View {+muestraVelocidad(String, Integer)
+                  +muestraVelocidad2(String, Integer)
+       }
       class Model {
           ArrayList~Coche~: parking
           +crearCoche(String, String, String)
@@ -46,7 +48,11 @@ classDiagram
       class ObserverVelocidad {
       +update()
       }
+      class ObsExceso {
+      +update()
+      }
     Controller "1" *-- "1" ObserverVelocidad : association
+    Controller "1" *-- "1" ObsExceso : association
     Controller "1" *-- "1" Model : association
     Controller "1" *-- "1" View : association
     Model "1" *-- "1..n" Coche : association
@@ -67,6 +73,7 @@ sequenceDiagram
     participant View
     participant Controller
     participant ObserverVelocidad
+    participant ObsExceso
     participant Model
     
     usuario-->>View: clik! Crear coche
@@ -89,10 +96,14 @@ sequenceDiagram
     Controller->>Model: Aumenta la velocidad
     activate Model
     Model-->>ObserverVelocidad: Notificación de cambio de velocidad
-    deactivate Model
     activate ObserverVelocidad
+    Model-->>ObsExceso: Notificación de cambio de velocidad
+    deactivate Model
+    activate ObsExceso
     ObserverVelocidad-->>+View: Muestra la velocidad
     deactivate ObserverVelocidad
+    ObsExceso-->>+View: Muestra Velocidad con exceso
+    deactivate ObsExceso
     deactivate Controller
     View-->>usuario: Tu coche ha aumentado su velocidad!
     deactivate View
@@ -124,6 +135,7 @@ sequenceDiagram
     
     participant Controller
     participant ObserverVelocidad
+    participant ObsExceso
     participant Model
     
     usuario-->>InterfazGrafica: clik! Crear coche
@@ -136,7 +148,6 @@ sequenceDiagram
     Controller-->>+View: muestraVelocidad(matricula, velocidad)
     deactivate Controller
     View-->>-Dialogo: muestraVelocidad(matricula, velocidad)
-    
     usuario-->>InterfazGrafica: clik! Para aumentar velocidad
     InterfazGrafica-->>Controller: subirVelocidad(matricula,velocidad)
     activate Controller
